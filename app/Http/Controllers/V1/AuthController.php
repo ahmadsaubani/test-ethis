@@ -15,14 +15,6 @@ use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
-
-    protected $client;
-    
-    public function __construct(Client $client, Request $request)
-    {
-        $this->client = $client;
-    }
-
     public function register(Request $request) 
     {    
         DB::beginTransaction();
