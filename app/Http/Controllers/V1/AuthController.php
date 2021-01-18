@@ -11,8 +11,6 @@ use App\Models\User;
 use App\Transformers\UserTransformer;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-
 
 class AuthController extends Controller
 {
@@ -83,24 +81,21 @@ class AuthController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             $user->token()->revoke();
-
             return $this->showResult('Logout success', [ 'data' => [] ]);
-        } else {
-            return $this->errorResponse('Unauthorised', 401);
         }
+
+        return $this->errorResponse('Unauthorised', 401);
     }
         
     public function getUserProfile()
     {
-        $user = Auth::user();
+        $user = user();
 
         if (empty($user)) {
             return $this->errorResponse('User not found', 404);
         }
 
-        $result = $this->item($user, new UserTransformer());
-
-        return $this->showResultV2('Data Found', $result);
+        return $this->showResultV2('Data Found', $this->item($user, new UserTransformer()));
     }
 
     public function showAll()
@@ -111,9 +106,7 @@ class AuthController extends Controller
             return $this->errorResponse('Users is empty', 403);
         }
 
-        $result = $this->collection($users, new UserTransformer(), 'activities,wallet');
-
-        return $this->showResultV2('Data Found', $result);
+        return $this->showResultV2('Data Found', $this->collection($users, new UserTransformer()));
     }
 
 } 

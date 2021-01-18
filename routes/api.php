@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\V1\AuthController;
+use App\Http\Controllers\V1\NewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,13 @@ Route::group(['middleware' => 'auth:api'], function(){
         Route::get('/profile', [AuthController::class, 'getUserProfile']);
         Route::get('/all', [AuthController::class, 'showAll']);
         Route::post('/logout', [AuthController::class, 'logout']);
+        Route::prefix('/post')->group(function(){
+            Route::post('/', [NewsController::class, 'create']);
+            Route::get('/', [NewsController::class, 'getAll']);
+            Route::get('/show/{id}', [NewsController::class, 'show']);
+            Route::put('/update/{id}', [NewsController::class, 'update']);
+            Route::delete('/delete/{id}', [NewsController::class, 'destroy']);
+        });
     });
 
 });
