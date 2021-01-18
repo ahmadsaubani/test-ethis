@@ -1,0 +1,577 @@
+{
+	"info": {
+		"_postman_id": "ead755a1-7e51-4e99-8314-c778b91c2b92",
+		"name": "bans",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Return All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_local}}/api/user/all",
+							"host": [
+								"{{url_local}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Profile login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{localhost}}/api/user/profile",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url_local}}/api/user/logout",
+							"host": [
+								"{{url_local}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"token\", jsonData.data.token);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "ahmad.saubani@tonase.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{localhost}}/api/login",
+							"host": [
+								"{{localhost}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "test@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "confirmation_password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "bans",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_local}}/api/register",
+							"host": [
+								"{{url_local}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "news",
+			"item": [
+				{
+					"name": "Create News",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "test4",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "tet123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_local}}/api/user/post/",
+							"host": [
+								"{{url_local}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"post",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All News On user logged in",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_local}}/api/user/post/",
+							"host": [
+								"{{url_local}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"post",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show News On user logged in By id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_local}}/api/user/post/show/1",
+							"host": [
+								"{{url_local}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"post",
+								"show",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE News By id On User Logged In",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "tertatih",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "tertatih",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_local}}/api/user/post/update/4?_method=PUT",
+							"host": [
+								"{{url_local}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"post",
+								"update",
+								"4"
+							],
+							"query": [
+								{
+									"key": "_method",
+									"value": "PUT"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete News On user logged in",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_local}}/api/user/post/delete/4",
+							"host": [
+								"{{url_local}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"post",
+								"delete",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Raja Ongkir API",
+			"item": [
+				{
+					"name": "List Provinces",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_local}}/api/raja-ongkir/province",
+							"host": [
+								"{{url_local}}"
+							],
+							"path": [
+								"api",
+								"raja-ongkir",
+								"province"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Cities",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_local}}/api/raja-ongkir/city",
+							"host": [
+								"{{url_local}}"
+							],
+							"path": [
+								"api",
+								"raja-ongkir",
+								"city"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Cost",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "key",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "origin",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "destination",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "1700",
+									"description": "dalam gram",
+									"type": "text"
+								},
+								{
+									"key": "courier",
+									"value": "jne",
+									"description": "Kode kurir: jne, pos, tiki.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_local}}/api/raja-ongkir/check-cost",
+							"host": [
+								"{{url_local}}"
+							],
+							"path": [
+								"api",
+								"raja-ongkir",
+								"check-cost"
+							],
+							"query": [
+								{
+									"key": "origin",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "destination",
+									"value": "4",
+									"disabled": true
+								},
+								{
+									"key": "weight",
+									"value": "1700",
+									"disabled": true
+								},
+								{
+									"key": "courier",
+									"value": "jne",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

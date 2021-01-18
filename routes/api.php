@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\V1\AuthController;
 use App\Http\Controllers\V1\NewsController;
+use App\Http\Controllers\V1\RajaOngkirController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,12 @@ Route::group(['middleware' => 'auth:api'], function(){
             Route::put('/update/{id}', [NewsController::class, 'update']);
             Route::delete('/delete/{id}', [NewsController::class, 'destroy']);
         });
+        
     });
 
+    Route::prefix('/raja-ongkir')->group(function(){
+        Route::get('/province', [RajaOngkirController::class, 'searchProvinces']);
+        Route::get('/city', [RajaOngkirController::class, 'searchCities']);
+        Route::post('/check-cost', [RajaOngkirController::class, 'checkCost']);
+    });
 });
