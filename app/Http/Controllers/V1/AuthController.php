@@ -10,10 +10,19 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Transformers\UserTransformer;
 use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
+
+    protected $client;
+    
+    public function __construct(Client $client, Request $request)
+    {
+        $this->client = $client;
+    }
+
     public function register(Request $request) 
     {    
         DB::beginTransaction();

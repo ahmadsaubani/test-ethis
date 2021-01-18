@@ -143,7 +143,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "ahmad.saubani@tonase.com",
+									"value": "ahmad.saubani@ethis.com",
 									"type": "text"
 								},
 								{
@@ -154,9 +154,9 @@
 							]
 						},
 						"url": {
-							"raw": "{{localhost}}/api/login",
+							"raw": "{{url_local}}/api/login",
 							"host": [
-								"{{localhost}}"
+								"{{url_local}}"
 							],
 							"path": [
 								"api",
@@ -204,6 +204,107 @@
 							"path": [
 								"api",
 								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Method With OAuth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "8aA9w1eu75CvzssXCsFUMdTGXJESojZ0UJf9C8ky",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "ahmad.saubani@ethis.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "*",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_local}}/oauth/token",
+							"host": [
+								"{{url_local}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token Method With Oauth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "def502000f3ea91779f00a0443768c684e17526862a373c9ec48aa4b70d5c3006068f777d9d23d2c40e89a25567d521fb8e3f1a07dfad59503161833301dd719e71a03963ae70cd37b1b686ae256032ebfc8a171a489deed5fe7f380bdb303e672827643986aa6559348d3b986f5195f3506a92e738f2eb3684c8517a8c8d7996572e715d527f5d5d3a72dbee37bb696cdf50fe5cf07501a8c656479c258fd1dd66996bdf5bd502c3e82b0113571061dc058ea254d9374748ad1ae721b08bf4e85efc41d6e192c4510b039a620eede4aca73315ea7293a65f9ed4f5d357291b9cf97c84d4ddb106767db60edf38926c28f9bac7d1cf2cbf0530d77160f0c1e2908da0c802e1767d49d65a2e258a0b4cb9be0e72674bf1ff6972d7e90b8fa5af137fb513f6ff97645a4f12cd3a5b6ed4dca4b1095c579c069b0a7a296facf44dcc646fa47162ca4c26dbcc650e12266066ddd1d13db8b50bfa4a08a3d55e65719a0892363",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "8aA9w1eu75CvzssXCsFUMdTGXJESojZ0UJf9C8ky",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "*",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_local}}/oauth/token",
+							"host": [
+								"{{url_local}}"
+							],
+							"path": [
+								"oauth",
+								"token"
 							]
 						}
 					},
